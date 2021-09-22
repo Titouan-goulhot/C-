@@ -9,108 +9,76 @@ namespace HelloWorld
     public class Message
     {
         // Properties 
-        private DateTime dt = DateTime.Now;
-        private string helloMessage;
+        private IDateTime dt;
+        public string HelloMessage {get; set;}
 
+        public int Hour = DateTime.Now.Hour;
+
+        public int Matin { get; set; }
+
+        public int ApresMidi { get; set; }
+
+        public int Soir { get; set; }
+       
+
+        public string UserName = Environment.UserName;
 
 
         //Constructor 
 
         public Message()
-        {
-
-        }
-        public Message(DateTime dt, string helloMessage)
+            :this(9, 13, 18, new MyDateTime())
         {
         
         }
-
-
-
-
-        // Getter & Setter
-        public DateTime Dt
+        public Message(int matin, int apresMidi, int soir, IDateTime dateTime)
         {
-            get
-            {
-                
-                //Affichage le matin en semaine
-                if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && dt.Hour >= 9 && dt.Hour <= 13)
-                {
-                    return ("Bonjour ! " + Environment.UserName);
-                }
-
-                //Affichage l'après-midi en semaine
-                else if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && dt.Hour >= 13 && dt.Hour <= 18)
-                {
-                    return "Bon Après-Midi ! " + Environment.UserName;
-                }
-
-                //Affichage du soir en semaine
-                else if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && dt.Hour >= 18 && dt.Hour <= 9)
-                {
-                    return ("Bonsoir ! " + Environment.UserName;
-                }
-
-
-                //Affichage du Week-End le vendredi après 18h && Lundi avant 9h
-                else if (dt.DayOfWeek == DayOfWeek.Friday && dt.Hour >= 18 && dt.DayOfWeek == DayOfWeek.Monday && dt.Hour <= 9)
-                {
-                    return ("Bon Week-End ! " + Environment.UserName);
-
-                } //Affichage du Week-End le Samedi && Dimanche
-                else if (dt.DayOfWeek == DayOfWeek.Saturday && dt.DayOfWeek == DayOfWeek.Sunday)
-                {
-                    return ("Bon Week-End ! " + Environment.UserName);
-                };
-            }
+            dt = dateTime;
+            Matin = matin;
+            ApresMidi = apresMidi;
+            Soir = soir;
         }
 
-        public string HelloMessage
+         public Message (IDateTime dateTime)
+            :this(9,13,18, dateTime)
         {
-            get { return helloMessage; }
         }
-
-
 
 
         //Méthode 
 
-        public string MessageOfTheDay()
+        public void MessageOfTheDay()
         {
             //Affichage le matin en semaine
-            if(dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && dt.Hour >= 9 && dt.Hour <= 13)
+            if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && dt.Hour >= Matin && dt.Hour < ApresMidi)
             {
-                return("Bonjour ! " + Environment.UserName);
+               HelloMessage = "Bonjour ! " + UserName;
             }
 
             //Affichage l'après-midi en semaine
-            else if(dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && dt.Hour >= 13 && dt.Hour <= 18)
+            else if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && (dt.Hour >= ApresMidi && dt.Hour <= Soir))
             {
-               return ("Bon Après-Midi ! " + Environment.UserName);
+               HelloMessage = "Bon Après-Midi ! " + UserName;
             }
 
             //Affichage du soir en semaine
-           else if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && dt.Hour >= 18 && dt.Hour <= 9)
+            else if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && (dt.Hour >= Soir || dt.Hour < Matin)) 
             {
-                return ("Bonsoir ! " + Environment.UserName);
+               HelloMessage = "Bonsoir ! " + UserName;
             }
 
-
-            //Affichage du Week-End le vendredi après 18h && Lundi avant 9h
-            else if(dt.DayOfWeek == DayOfWeek.Friday && dt.Hour >= 18 && dt.DayOfWeek == DayOfWeek.Monday && dt.Hour <= 9)
+            //Affichage du Week-End le vendredi après Soir && Lundi avant Matin 
+            else if (dt.DayOfWeek == DayOfWeek.Friday && (dt.Hour > Soir) || dt.DayOfWeek == DayOfWeek.Monday && (dt.Hour < Matin)) 
             {
-               return ("Bon Week-End ! " + Environment.UserName);
+               HelloMessage = "Bon Week-End ! " + UserName;
 
             } //Affichage du Week-End le Samedi && Dimanche
-            else if(dt.DayOfWeek == DayOfWeek.Saturday && dt.DayOfWeek == DayOfWeek.Sunday)
+            else if (dt.DayOfWeek == DayOfWeek.Saturday || dt.DayOfWeek == DayOfWeek.Sunday)
             {
-               return ("Bon Week-End ! " + Environment.UserName);
+               HelloMessage = "Bon Week-End ! " + UserName;
             };
-
-            return MessageOfTheDay();
         }
     }
 
-        
+
 }

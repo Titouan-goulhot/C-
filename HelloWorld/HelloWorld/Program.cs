@@ -7,12 +7,21 @@ namespace HelloWorld
         static void Main(string[] args)
         {
 
+
             Message message = new Message();
 
-           
-            Console.WriteLine(message.MessageOfTheDay());
+                message.MessageOfTheDay();
 
-            Console.ReadLine();
+            Console.WriteLine("Write 'exit' to exit or press 'Enter' to restart the program ");
+            while (Console.ReadLine() != "exit") {
+
+                    
+                    Console.WriteLine(message.HelloMessage);
+                
+            }
+
+           
+
 
         }
 
