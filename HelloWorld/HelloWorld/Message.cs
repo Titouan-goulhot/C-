@@ -54,7 +54,21 @@ namespace HelloWorld
             {
                HelloMessage = "Bonjour ! " + UserName;
             }
+            //Affichage du Week-End le vendredi après Soir && Lundi avant Matin 
+            else if (dt.DayOfWeek == DayOfWeek.Friday && (dt.Hour > Soir))
+            {
+                HelloMessage = "Bon Week-End ! " + UserName;
 
+            } //Affichage du Week-End le Samedi && Dimanche
+            else if (dt.DayOfWeek == DayOfWeek.Saturday || dt.DayOfWeek == DayOfWeek.Sunday)
+            {
+                HelloMessage = "Bon Week-End ! " + UserName;
+            }
+            //Affichage du Week-End le Lundi Matin
+            else if (dt.DayOfWeek == DayOfWeek.Monday && (dt.Hour < Matin))
+            {
+                HelloMessage = "Bon Week-End ! " + UserName;
+            }
             //Affichage l'après-midi en semaine
             else if (dt.DayOfWeek != DayOfWeek.Saturday && dt.DayOfWeek != DayOfWeek.Sunday && (dt.Hour >= ApresMidi && dt.Hour <= Soir))
             {
@@ -67,16 +81,8 @@ namespace HelloWorld
                HelloMessage = "Bonsoir ! " + UserName;
             }
 
-            //Affichage du Week-End le vendredi après Soir && Lundi avant Matin 
-            else if (dt.DayOfWeek == DayOfWeek.Friday && (dt.Hour > Soir) || dt.DayOfWeek == DayOfWeek.Monday && (dt.Hour < Matin)) 
-            {
-               HelloMessage = "Bon Week-End ! " + UserName;
+            
 
-            } //Affichage du Week-End le Samedi && Dimanche
-            else if (dt.DayOfWeek == DayOfWeek.Saturday || dt.DayOfWeek == DayOfWeek.Sunday)
-            {
-               HelloMessage = "Bon Week-End ! " + UserName;
-            };
         }
     }
 

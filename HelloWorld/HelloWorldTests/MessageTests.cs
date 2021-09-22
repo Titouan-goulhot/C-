@@ -39,14 +39,24 @@ namespace HelloWorld.Tests
 
             Assert.AreEqual(message2.HelloMessage, "Bon Week-End ! titouan.goulhot");
 
+
             //Le Lundi avant "le Matin"
-            /*
             Message message3 = new Message(new FakeMyDateTime(DayOfWeek.Monday, 6));
 
             message3.MessageOfTheDay();
 
             Assert.AreEqual(message3.HelloMessage, "Bon Week-End ! titouan.goulhot");
-            */
+
+
+
+            //Le vendredi soir
+            Message message4 = new Message(new FakeMyDateTime(DayOfWeek.Friday, 20));
+
+            message4.MessageOfTheDay();
+
+            Assert.AreEqual(message4.HelloMessage, "Bon Week-End ! titouan.goulhot");
+
+
 
         }
     }
