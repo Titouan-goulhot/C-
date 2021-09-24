@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\HelloWorld"
+    "\\HelloWorld",
+    "\\HelloWorld\\HelloWorld",
+    "\\HelloWorld\\HelloWorldTests",
+    "\\HelloWorld\\HelloWorld\\bin",
+    "\\HelloWorld\\HelloWorld\\bin\\Debug"
   ],
-  "SelectedNode": "\\HelloWorld\\HelloWorld.sln",
+  "SelectedNode": "\\HelloWorld\\HelloWorldTests\\MessageTests.cs",
   "PreviewInSolutionExplorer": false
 }
